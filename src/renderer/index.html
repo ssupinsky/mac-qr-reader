@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; child-src 'none'; worker-src 'none'; manifest-src 'none'; form-action 'none'; base-uri 'none'; require-trusted-types-for 'script'; trusted-types 'none'">
+<meta name="color-scheme" content="light dark">
+<title>QR Reader</title>
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<div id="app" class="app" data-testid="drop-zone">
+  <header class="titlebar">
+    <div class="tb-title"><span class="app-name">QR Reader</span><span id="tb-context" class="tb-context" data-testid="status" aria-live="polite"></span></div>
+    <div id="toolbar" class="toolbar" role="toolbar" aria-label="Scan"></div>
+  </header>
+  <main id="content" class="content">
+    <section id="empty" class="empty" aria-label="Start"></section>
+    <section id="results" class="results" data-testid="results" hidden></section>
+  </main>
+  <div id="drag-overlay" class="drag-overlay" aria-hidden="true"></div>
+  <div id="busy" class="busy" role="status" aria-live="polite" hidden></div>
+  <div id="toasts" class="toast-host"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "qr-reader",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Security-focused personal QR / barcode reader for macOS",
+  "license": "UNLICENSED",
+  "main": "src/main/main.js",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "start": "./start.sh",
+    "setup": "node scripts/setup.mjs",
+    "dev": "./start.sh --dev",
+    "build": "sh native/build.sh && node scripts/build-app.mjs",
+    "test": "node --test 'test/unit/*.test.mjs' 'test/native/*.test.mjs'",
+    "test:e2e": "node --test 'test/e2e/*.test.mjs'",
+    "test:packaged": "node --test 'test/e2e-packaged/*.test.mjs'",
+    "verify": "node scripts/verify.mjs",
+    "gen-fixtures": "sh native/build.sh --fixtures"
+  },
+  "devDependencies": {
+    "electron": "45.2.3",
+    "playwright-core": "1.64.1"
+  }
+}

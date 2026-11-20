@@ -1,0 +1,32 @@
+# Dependencies (reinstalled and verified by scripts/setup.mjs)
+node_modules/
+
+# Build outputs: helper binaries, test probes, icon, app bundles, setup stamps
+build/
+
+# Generated at build time into the app.asar staging only — never commit
+src/main/helper-hashes.json
+src/main/test-variant.json
+
+# Screenshots and summaries from scripts/verify.mjs
+verify-output/
+
+# Logs and debug output
+*.log
+npm-debug.log*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local env files (the app reads none; keep secrets out regardless)
+.env
+.env.*

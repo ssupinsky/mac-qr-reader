@@ -1,0 +1,93 @@
+;; qr-decode.sb — sandbox-exec(1) profile for the qr-decode helper.
+;; See docs/SECURITY.md ("Helper sandbox") for rationale and test evidence.
+;;
+;; Invocation (main process; execFile/spawn, never a shell; cwd "/"; minimal env;
+;; both paths MUST be absolute and fs.realpathSync()-resolved, because the sandbox
+;; matches canonical paths, e.g. /private/tmp not /tmp):
+;;
+;;   /usr/bin/sandbox-exec -f <qr-decode.sb> \
+;;       -D HELPER=<realpath of qr-decode> -D HELPER_DIR=<realpath of its directory> \
+;;       <realpath of qr-decode> [--preview-max 1600] [--max-pages 10]
+;;
+;; Policy: deny everything, then allow only what Apple Vision + ImageIO + CoreGraphics
+;; need on Apple silicon. Result: no network (no sockets, no DNS, and trustd — which
+;; would fetch AIA/OCSP URLs on the helper's behalf — is unreachable), no file writes
+;; anywhere, no reads of user files ($HOME, /Users, /Volumes, /private/tmp,
+;; /private/var/folders), no exec of anything except the helper itself, no
+;; pasteboard, no WindowServer. Input arrives on stdin, output leaves on stdout;
+;; already-open file descriptors are not affected by path rules.
+;;
+;; Verified 2026-11-18 on macOS 26.6.2 (25G83), Apple M1 Pro.
+
+(version 1)
+(deny default)
+
+;; Apple's baseline for system processes: read-only access to /System, /usr/lib,
+;; /usr/share, /Library/Apple, dyld support, sysctl-read, and mach-lookup of core
+;; daemons (logd, cfprefsd, trustd, opendirectoryd ...). It grants no direct network,
+;; no writes except /dev/null, /dev/zero, /dev/fd/*, /dev/dtracehelper, and
+;; core dumps in /cores (only if core dumps are enabled).
+;; NOTE: system.sb is an Apple-private interface; if a future macOS changes it,
+;; the helper fails closed (crash or empty result) and setup's self-test catches it.
+(import "system.sb")
+
+;; Close side channels system.sb opens for daemons. Later rules win in SBPL, so these
+;; denials override the matching allows inside system.sb. Each one was checked: helper
+;; output on all fixtures is byte-identical with and without it (docs/SECURITY.md §7.3).
+;;
+;; trustd: SecTrust evaluation of attacker-supplied certificates makes trustd (outside
+;; our sandbox) fetch AIA caIssuers / OCSP / CRL URLs over HTTP. A compromised helper
+;; could use that as a network channel ("GET http://attacker/<data>"). Vision/ImageIO
+;; never need it. analyticsd / syslog socket: telemetry and logging channels to other
+;; processes.
+(deny mach-lookup
+      (global-name "com.apple.trustd")
+      (global-name "com.apple.trustd.agent")
+      (global-name "com.apple.analyticsd")
+      (global-name "com.apple.analyticsd.messagetracer"))
+(deny network-outbound (literal "/private/var/run/syslog"))
+;; Further daemon endpoints the helper does not need (notify_post broadcast, diagnostics,
+;; process-state and activity daemons), the local account database file and the process
+;; list (kern.proc.*). NOT denied because denying costs ~30 ms per scan (libinfo retries):
+;; com.apple.system.opendirectoryd.* / DirectoryService.libinfo_v1 (local lookups only).
+;; com.apple.logd stays allowed (os_log; local only).
+(deny mach-lookup
+      (global-name "com.apple.diagnosticd")
+      (global-name "com.apple.runningboard")
+      (global-name "com.apple.system.notification_center")
+      (global-name "com.apple.espd")
+      (global-name "com.apple.dt.automationmode.reader")
+      (global-name "com.apple.appsleep")
+      (global-name "com.apple.xpc.activity.unmanaged"))
+(deny file-read* (literal "/private/etc/passwd") (literal "/private/etc/master.passwd"))
+(deny sysctl-read (sysctl-name-prefix "kern.proc"))
+
+;; Run the helper binary itself (sandbox-exec execs it after applying the profile).
+(allow process-exec (literal (param "HELPER")))
+
+;; Read the helper binary and list its own directory (dyld / CFBundle main-bundle
+;; lookup reads the executable's directory; without this Vision fails).
+(allow file-read* (literal (param "HELPER")) (literal (param "HELPER_DIR")))
+
+;; Apple Neural Engine (Vision's barcode detector runs an Espresso/E5RT model).
+(allow mach-lookup (global-name "com.apple.appleneuralengine"))
+
+;; GPU / IOSurface / ANE user clients: the same set Apple grants its own
+;; Vision/ML daemons (e.g. com.apple.textunderstandingd.sb, appsandbox-common.sb).
+;; Without these, VNDetectBarcodesRequest silently returns zero results.
+(allow iokit-open-user-client
+       (iokit-user-client-class "IOSurfaceRootUserClient")
+       (iokit-user-client-class "IOSurfaceAcceleratorClient")
+       (iokit-user-client-class "AGXDeviceUserClient")
+       (iokit-user-client-class "H11ANEInDirectPathClient")
+       (iokit-user-client-class "H1xANELoadBalancerDirectPathClient")
+       (iokit-user-client-class "AppleVirtIONeuralEngineDeviceUserClient"))
+
+;; Intentionally NOT allowed (observed denials that are harmless):
+;;   file-write* ~/Library/Caches/qr-decode/com.apple.e5rt.e5bundlecache  (model cache;
+;;     E5RT prints a warning TO STDOUT, see SECURITY.md — the helper must keep its
+;;     JSON on a private fd), file-read-metadata of $HOME, /private/var/folders/..,
+;;     user-preference-read kCFPreferencesAnyApplication, ~/.CFUserTextEncoding,
+;;     mach-lookup com.apple.windowserver.active, com.apple.tccd.system,
+;;     com.apple.DiskArbitration.diskarbitrationd, com.apple.CoreServices.coreservicesd,
+;;     com.apple.coreservices.launchservicesd, com.apple.dock.server.

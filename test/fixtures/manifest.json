@@ -1,0 +1,1078 @@
+{
+  "fixtures" : [
+    {
+      "description" : "plain text",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.59999999999999998,
+              "w" : 0.59999999999999998,
+              "x" : 0.20000000000000001,
+              "y" : 0.20000000000000001
+            },
+            "symbology" : "QR",
+            "text" : "Hello, QR world!"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 360,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 360
+      },
+      "file" : "text.png"
+    },
+    {
+      "description" : "https URL",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.660377358490566,
+              "w" : 0.660377358490566,
+              "x" : 0.16981132075471697,
+              "y" : 0.16981132075471697
+            },
+            "symbology" : "QR",
+            "text" : "https://example.com/path/to/page?query=1&b=two#frag"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 424,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 424
+      },
+      "file" : "url.png"
+    },
+    {
+      "description" : "IDN / punycode homograph URL",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.63265306122448983,
+              "w" : 0.63265306122448983,
+              "x" : 0.18367346938775511,
+              "y" : 0.18367346938775511
+            },
+            "symbology" : "QR",
+            "text" : "https://xn--pple-43d.com/login"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 392,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 392
+      },
+      "file" : "url-idn.png"
+    },
+    {
+      "description" : "Wi-Fi WPA with escaped chars",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.660377358490566,
+              "w" : 0.660377358490566,
+              "x" : 0.16981132075471697,
+              "y" : 0.16981132075471697
+            },
+            "symbology" : "QR",
+            "text" : "WIFI:T:WPA;S:My\\;Net\\,work;P:p\\:a\\\\ss\\\"word;H:false;;"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 424,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 424
+      },
+      "file" : "wifi.png"
+    },
+    {
+      "description" : "vCard 3.0",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.77777777777777779,
+              "w" : 0.77777777777777779,
+              "x" : 0.1111111111111111,
+              "y" : 0.1111111111111111
+            },
+            "symbology" : "QR",
+            "text" : "BEGIN:VCARD\r\nVERSION:3.0\r\nN:Doe;John;;Dr.;\r\nFN:Dr. John Doe\r\nORG:Example Corp\r\nTITLE:Engineer\r\nTEL;TYPE=CELL:+1 555 123 4567\r\nEMAIL:john.doe@example.com\r\nURL:https://example.com\r\nADR;TYPE=WORK:;;1 Infinite Loop;Cupertino;CA;95014;USA\r\nEND:VCARD"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 648,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 648
+      },
+      "file" : "vcard.png"
+    },
+    {
+      "description" : "MECARD contact",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.68421052631578949,
+              "w" : 0.68421052631578949,
+              "x" : 0.15789473684210525,
+              "y" : 0.15789473684210525
+            },
+            "symbology" : "QR",
+            "text" : "MECARD:N:Doe,John;TEL:+15551234567;EMAIL:john@example.com;URL:https://example.com;;"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 456,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 456
+      },
+      "file" : "mecard.png"
+    },
+    {
+      "description" : "otpauth TOTP",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.72307692307692306,
+              "w" : 0.72307692307692306,
+              "x" : 0.13846153846153847,
+              "y" : 0.13846153846153847
+            },
+            "symbology" : "QR",
+            "text" : "otpauth://totp/Example:alice@example.com?secret=JBSWY3DPEHPK3PXP&issuer=Example&algorithm=SHA1&digits=6&period=30"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 520,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 520
+      },
+      "file" : "otpauth.png"
+    },
+    {
+      "description" : "Google Authenticator migration",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.76623376623376627,
+              "w" : 0.76623376623376627,
+              "x" : 0.11688311688311688,
+              "y" : 0.11688311688311688
+            },
+            "symbology" : "QR",
+            "text" : "otpauth-migration://offline?data=Ci4KCkhlbGxvId6tvu8SEWFsaWNlQGV4YW1wbGUuY29tGgdFeGFtcGxlIAEoATACCjUKFDEyMzQ1Njc4OTAxMjM0NTY3ODkwEgtBQ01FIENvOmJvYhoHQUNNRSBDbyACKAIwATisAhABGAEgACj50rT%2F%2F%2F%2F%2F%2F%2F8B"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 616,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 616
+      },
+      "file" : "otpauth-migration.png"
+    },
+    {
+      "description" : "SEPA EPC (BCD) payment",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.68421052631578949,
+              "w" : 0.68421052631578949,
+              "x" : 0.15789473684210525,
+              "y" : 0.15789473684210525
+            },
+            "symbology" : "QR",
+            "text" : "BCD\n002\n1\nSCT\nBPOTBEB1\nRed Cross of Belgium\nBE72000000001616\nEUR12.50\nCHAR\n\nUrgency fund\n"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 456,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 456
+      },
+      "file" : "epc.png"
+    },
+    {
+      "description" : "geo URI",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.63265306122448983,
+              "w" : 0.63265306122448983,
+              "x" : 0.18367346938775511,
+              "y" : 0.18367346938775511
+            },
+            "symbology" : "QR",
+            "text" : "geo:37.7749,-122.4194?q=San%20Francisco"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 392,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 392
+      },
+      "file" : "geo.png"
+    },
+    {
+      "description" : "mailto URI",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.660377358490566,
+              "w" : 0.660377358490566,
+              "x" : 0.16981132075471697,
+              "y" : 0.16981132075471697
+            },
+            "symbology" : "QR",
+            "text" : "mailto:someone@example.com?subject=Hello&body=Hi%20there"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 424,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 424
+      },
+      "file" : "mailto.png"
+    },
+    {
+      "description" : "tel URI",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.59999999999999998,
+              "w" : 0.59999999999999998,
+              "x" : 0.20000000000000001,
+              "y" : 0.20000000000000001
+            },
+            "symbology" : "QR",
+            "text" : "tel:+1-555-123-4567"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 360,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 360
+      },
+      "file" : "tel.png"
+    },
+    {
+      "description" : "SMSTO",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.59999999999999998,
+              "w" : 0.59999999999999998,
+              "x" : 0.20000000000000001,
+              "y" : 0.20000000000000001
+            },
+            "symbology" : "QR",
+            "text" : "SMSTO:+15551234567:Hello there"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 360,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 360
+      },
+      "file" : "smsto.png"
+    },
+    {
+      "description" : "iCalendar VEVENT",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.73913043478260865,
+              "w" : 0.73913043478260865,
+              "x" : 0.13043478260869565,
+              "y" : 0.13043478260869565
+            },
+            "symbology" : "QR",
+            "text" : "BEGIN:VEVENT\nSUMMARY:Team meeting\nDTSTART:20261201T100000Z\nDTEND:20261201T110000Z\nLOCATION:Room 1\nDESCRIPTION:Quarterly planning\nEND:VEVENT"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 552,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 552
+      },
+      "file" : "vevent.png"
+    },
+    {
+      "description" : "bitcoin URI",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.68421052631578949,
+              "w" : 0.68421052631578949,
+              "x" : 0.15789473684210525,
+              "y" : 0.15789473684210525
+            },
+            "symbology" : "QR",
+            "text" : "bitcoin:bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq?amount=0.001&label=Donation"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 456,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 456
+      },
+      "file" : "bitcoin.png"
+    },
+    {
+      "description" : "JSON payload",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.68421052631578949,
+              "w" : 0.68421052631578949,
+              "x" : 0.15789473684210525,
+              "y" : 0.15789473684210525
+            },
+            "symbology" : "QR",
+            "text" : "{\"type\":\"ticket\",\"id\":12345,\"seat\":\"A12\",\"valid\":true,\"tags\":[\"vip\",\"early\"]}"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 456,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 456
+      },
+      "file" : "json.png"
+    },
+    {
+      "description" : "~1500 character text",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.84516129032258069,
+              "w" : 0.84516129032258069,
+              "x" : 0.077419354838709681,
+              "y" : 0.077419354838709681
+            },
+            "symbology" : "QR",
+            "text" : "lorem ipsum dolor sit amet consectetur adipiscing elit sed. do eiusmod tempor lorem ipsum dolor sit amet consectetur. adipiscing elit sed do eiusmod tempor lorem ipsum dolor. sit amet consectetur adipiscing elit sed do eiusmod tempor. lorem ipsum dolor sit amet consectetur adipiscing elit sed. do eiusmod tempor lorem ipsum dolor sit amet consectetur. adipiscing elit sed do eiusmod tempor lorem ipsum dolor. sit amet consectetur adipiscing elit sed do eiusmod tempor. lorem ipsum dolor sit amet consectetur adipiscing elit sed. do eiusmod tempor lorem ipsum dolor sit amet consectetur. adipiscing elit sed do eiusmod tempor lorem ipsum dolor. sit amet consectetur adipiscing elit sed do eiusmod tempor. lorem ipsum dolor sit amet consectetur adipiscing elit sed. do eiusmod tempor lorem ipsum dolor sit amet consectetur. adipiscing elit sed do eiusmod tempor lorem ipsum dolor. sit amet consectetur adipiscing elit sed do eiusmod tempor. lorem ipsum dolor sit amet consectetur adipiscing elit sed. do eiusmod tempor lorem ipsum dolor sit amet consectetur. adipiscing elit sed do eiusmod tempor lorem ipsum dolor. sit amet consectetur adipiscing elit sed do eiusmod tempor. lorem ipsum dolor sit amet consectetur adipiscing elit sed. do eiusmod tempor lorem ipsum dolor sit amet consectetur. adipiscing elit sed do eiusmod tempor lorem ipsum dolor. sit amet consectetur adipiscing elit sed do eiusmod tempor. lorem ipsum dolor sit amet consectetur adipiscing elit sed. do eiusmod tempor lorem ipsum "
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 775,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 775
+      },
+      "file" : "long-text.png"
+    },
+    {
+      "description" : "bidi override + zero-width chars",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.660377358490566,
+              "w" : 0.660377358490566,
+              "x" : 0.16981132075471697,
+              "y" : 0.16981132075471697
+            },
+            "symbology" : "QR",
+            "text" : "Invoice ‮fdp.exe‬ pay​pal‍.com﻿ ⁦x⁩"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 424,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 424
+      },
+      "file" : "bidi-zero-width.png"
+    },
+    {
+      "description" : "UTF-8 emoji / Cyrillic",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.660377358490566,
+              "w" : 0.660377358490566,
+              "x" : 0.16981132075471697,
+              "y" : 0.16981132075471697
+            },
+            "symbology" : "QR",
+            "text" : "Привет, мир! 👋🌍 café ✓ 日本語"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 424,
+        "ok" : true,
+        "pages" : 1,
+        "width" : 424
+      },
+      "file" : "unicode.png"
+    },
+    {
+      "description" : "three QR codes at different positions",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.216,
+              "w" : 0.13500000000000001,
+              "x" : 0.057500000000000002,
+              "y" : 0.091999999999999998
+            },
+            "symbology" : "QR",
+            "text" : "https://example.com/one"
+          },
+          {
+            "bounds" : {
+              "h" : 0.161,
+              "w" : 0.10062500000000001,
+              "x" : 0.73624999999999996,
+              "y" : 0.14799999999999999
+            },
+            "symbology" : "QR",
+            "text" : "SECOND code"
+          },
+          {
+            "bounds" : {
+              "h" : 0.27900000000000003,
+              "w" : 0.174375,
+              "x" : 0.33500000000000002,
+              "y" : 0.63600000000000001
+            },
+            "symbology" : "QR",
+            "text" : "WIFI:T:WPA;S:Third;P:secret;;"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "multi-3.png"
+    },
+    {
+      "description" : "white-on-black QR",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.63265306122448983,
+              "w" : 0.63265306122448983,
+              "x" : 0.18367346938775511,
+              "y" : 0.18367346938775511
+            },
+            "symbology" : "QR",
+            "text" : "https://example.com/inverted"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "inverted.png"
+    },
+    {
+      "description" : "small (3px/module) QR in a 4000x3000 screenshot",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.031,
+              "w" : 0.02325,
+              "x" : 0.82799999999999996,
+              "y" : 0.80400000000000005
+            },
+            "symbology" : "QR",
+            "text" : "https://example.com/tiny-qr-in-screenshot"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "height" : 3000,
+        "ok" : true,
+        "width" : 4000
+      },
+      "file" : "screenshot-small-qr.png"
+    },
+    {
+      "description" : "1 px/module QR, 25x25 image",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.92000000000000004,
+              "w" : 0.92000000000000004,
+              "x" : 0.040000000000000001,
+              "y" : 0.040000000000000001
+            },
+            "symbology" : "QR",
+            "text" : "tiny 1px"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "tiny-1px.png"
+    },
+    {
+      "description" : "2 px/module QR, 54x54 image",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.85185185185185186,
+              "w" : 0.85185185185185186,
+              "x" : 0.07407407407407407,
+              "y" : 0.07407407407407407
+            },
+            "symbology" : "QR",
+            "text" : "tiny 2px"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "tiny-2px.png"
+    },
+    {
+      "description" : "1 px/module QR, 25x25 image",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 1,
+              "w" : 1,
+              "x" : 0,
+              "y" : 0
+            },
+            "symbology" : "QR",
+            "text" : "tiny 1px no quiet zone"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "tiny-1px-no-quiet.png"
+    },
+    {
+      "description" : "2 px/module QR in a 4000x3000 screenshot",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.020666666666666667,
+              "w" : 0.0155,
+              "x" : 0.30149999999999999,
+              "y" : 0.95866666666666667
+            },
+            "symbology" : "QR",
+            "text" : "2px modules in a big screenshot"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "screenshot-2px-qr.png"
+    },
+    {
+      "description" : "QR rotated 30° on noisy gradient, JPEG q0.6",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.35858166849341516,
+              "w" : 0.26893625137006139,
+              "x" : 0.42803187431496931,
+              "y" : 0.28737583241995907
+            },
+            "centerOnly" : true,
+            "symbology" : "QR",
+            "text" : "https://example.com/photo?id=30deg"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "jpeg",
+        "ok" : true
+      },
+      "file" : "photo-rotated.jpg"
+    },
+    {
+      "description" : "low-contrast QR (gray 115 on 158)",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.59999999999999998,
+              "w" : 0.59999999999999998,
+              "x" : 0.20000000000000001,
+              "y" : 0.20000000000000001
+            },
+            "symbology" : "QR",
+            "text" : "low contrast code"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "low-contrast.png"
+    },
+    {
+      "description" : "heic container",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.67500000000000004,
+              "w" : 0.67500000000000004,
+              "x" : 0.16250000000000001,
+              "y" : 0.16250000000000001
+            },
+            "symbology" : "QR",
+            "text" : "HEIC container test"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "heic",
+        "height" : 320,
+        "ok" : true,
+        "width" : 320
+      },
+      "file" : "heic.heic"
+    },
+    {
+      "description" : "tiff container",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.67500000000000004,
+              "w" : 0.67500000000000004,
+              "x" : 0.16250000000000001,
+              "y" : 0.16250000000000001
+            },
+            "symbology" : "QR",
+            "text" : "TIFF container test"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "tiff",
+        "height" : 320,
+        "ok" : true,
+        "width" : 320
+      },
+      "file" : "tiff.tiff"
+    },
+    {
+      "description" : "gif container",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.67500000000000004,
+              "w" : 0.67500000000000004,
+              "x" : 0.16250000000000001,
+              "y" : 0.16250000000000001
+            },
+            "symbology" : "QR",
+            "text" : "GIF container test"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "gif",
+        "height" : 320,
+        "ok" : true,
+        "width" : 320
+      },
+      "file" : "gif.gif"
+    },
+    {
+      "description" : "bmp container",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.67500000000000004,
+              "w" : 0.67500000000000004,
+              "x" : 0.16250000000000001,
+              "y" : 0.16250000000000001
+            },
+            "symbology" : "QR",
+            "text" : "BMP container test"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "bmp",
+        "height" : 320,
+        "ok" : true,
+        "width" : 320
+      },
+      "file" : "bmp.bmp"
+    },
+    {
+      "description" : "avif container",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.67500000000000004,
+              "w" : 0.67500000000000004,
+              "x" : 0.16250000000000001,
+              "y" : 0.16250000000000001
+            },
+            "symbology" : "QR",
+            "text" : "AVIF container test"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "avif",
+        "height" : 320,
+        "ok" : true,
+        "width" : 320
+      },
+      "file" : "avif.avif"
+    },
+    {
+      "description" : "ico container",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.71875,
+              "w" : 0.71875,
+              "x" : 0.140625,
+              "y" : 0.140625
+            },
+            "symbology" : "QR",
+            "text" : "ICO"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "ico",
+        "height" : 256,
+        "ok" : true,
+        "width" : 256
+      },
+      "file" : "ico.ico"
+    },
+    {
+      "description" : "3-frame animated GIF, QR on frame index 2",
+      "expect" : {
+        "codes" : [
+          {
+            "page" : 2,
+            "symbology" : "QR",
+            "text" : "code on third GIF frame"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "gif",
+        "ok" : true,
+        "pages" : 3,
+        "previewPage" : 2
+      },
+      "file" : "gif-anim.gif"
+    },
+    {
+      "description" : "WebP lossless (VP8L)",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.70454545454545459,
+              "w" : 0.70454545454545459,
+              "x" : 0.14772727272727273,
+              "y" : 0.14772727272727273
+            },
+            "symbology" : "QR",
+            "text" : "WebP lossless container test"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "webp",
+        "height" : 352,
+        "ok" : true,
+        "width" : 352
+      },
+      "file" : "webp.webp"
+    },
+    {
+      "description" : "dark modules on a transparent background",
+      "expect" : {
+        "codes" : [
+          {
+            "symbology" : "QR",
+            "text" : "dark code on transparent"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "transparent-dark.png"
+    },
+    {
+      "description" : "light modules on a transparent background (dark-mode web graphic)",
+      "expect" : {
+        "codes" : [
+          {
+            "symbology" : "QR",
+            "text" : "light code on transparent"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "transparent-light.png"
+    },
+    {
+      "description" : "2-page PDF, vector QR on page 2 only",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.18408551068883611,
+              "w" : 0.26050420168067229,
+              "x" : 0.50420168067226889,
+              "y" : 0.59382422802850354
+            },
+            "page" : 1,
+            "symbology" : "QR",
+            "text" : "https://example.com/pdf-page-2"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "pdf",
+        "ok" : true,
+        "pages" : 2,
+        "previewPage" : 1
+      },
+      "file" : "two-page.pdf"
+    },
+    {
+      "description" : "JPEG stored 800x1200 with EXIF orientation 6; QR appears top-left when displayed",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.33750000000000002,
+              "w" : 0.22500000000000001,
+              "x" : 0.10000000000000001,
+              "y" : 0.125
+            },
+            "symbology" : "QR",
+            "text" : "EXIF orientation 6"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "jpeg",
+        "height" : 800,
+        "ok" : true,
+        "width" : 1200
+      },
+      "file" : "exif-orientation-6.jpg"
+    },
+    {
+      "description" : "Aztec",
+      "expect" : {
+        "codes" : [
+          {
+            "symbology" : "Aztec",
+            "text" : "Aztec code payload 123"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "aztec.png"
+    },
+    {
+      "description" : "PDF417",
+      "expect" : {
+        "codes" : [
+          {
+            "symbology" : "PDF417",
+            "text" : "PDF417 payload: ticket #42"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "pdf417.png"
+    },
+    {
+      "description" : "Code 128",
+      "expect" : {
+        "codes" : [
+          {
+            "symbology" : "Code128",
+            "text" : "CODE128-ABC-12345"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "code128.png"
+    },
+    {
+      "description" : "gradient + noise, no code",
+      "expect" : {
+        "codes" : [
+
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "no-code.png"
+    },
+    {
+      "description" : "9000x9000 grayscale PNG (exercises the 24 MP downscale)",
+      "expect" : {
+        "codes" : [
+          {
+            "bounds" : {
+              "h" : 0.12,
+              "w" : 0.12,
+              "x" : 0.33333333333333331,
+              "y" : 0.22222222222222221
+            },
+            "symbology" : "QR",
+            "text" : "large image downscale path"
+          }
+        ],
+        "exactCount" : true,
+        "format" : "png",
+        "ok" : true
+      },
+      "file" : "large-81mp.png"
+    },
+    {
+      "description" : "PNG truncated at 40% (any well-formed JSON result is acceptable)",
+      "expect" : {
+        "anyResult" : true
+      },
+      "file" : "truncated.png"
+    },
+    {
+      "description" : "PNG cut inside IHDR",
+      "expect" : {
+        "error" : "decode_error",
+        "ok" : false
+      },
+      "file" : "truncated-header.png"
+    },
+    {
+      "description" : "PNG signature followed by random bytes",
+      "expect" : {
+        "error" : "decode_error",
+        "ok" : false
+      },
+      "file" : "png-signature-garbage.png"
+    },
+    {
+      "description" : "valid PNG header claiming 100000x100000",
+      "expect" : {
+        "error" : "too_large",
+        "ok" : false
+      },
+      "file" : "huge-dimensions.png"
+    },
+    {
+      "description" : "plain text file",
+      "expect" : {
+        "error" : "unsupported_format",
+        "ok" : false
+      },
+      "file" : "not-image.txt"
+    },
+    {
+      "description" : "zero bytes",
+      "expect" : {
+        "error" : "empty_input",
+        "ok" : false
+      },
+      "file" : "empty.bin"
+    },
+    {
+      "description" : "8 KiB of seeded random bytes",
+      "expect" : {
+        "error" : "unsupported_format",
+        "ok" : false
+      },
+      "file" : "random.bin"
+    },
+    {
+      "description" : "empty ZIP archive",
+      "expect" : {
+        "error" : "unsupported_format",
+        "ok" : false
+      },
+      "file" : "empty.zip"
+    },
+    {
+      "description" : "SVG (unsupported)",
+      "expect" : {
+        "error" : "unsupported_format",
+        "ok" : false
+      },
+      "file" : "image.svg"
+    }
+  ],
+  "generator" : "native/gen-fixtures.swift"
+}
